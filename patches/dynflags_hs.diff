@@ -1,0 +1,11 @@
+--- ghc-8.0.2/compiler/main/DynFlags.hs	2017-01-03 10:59:18.000000000 -0500
++++ ghc-8.0.2-built/compiler/main/DynFlags.hs	2017-12-04 14:51:13.000000000 -0500
+@@ -4809,7 +4809,7 @@
+         in loop dflags' warn
+  | hscTarget dflags == HscLlvm &&
+    not ((arch == ArchX86_64) && (os == OSLinux || os == OSDarwin || os == OSFreeBSD)) &&
+-   not ((isARM arch) && (os == OSLinux)) &&
++   not ((isARM arch) && (os == OSLinux || os == OSFreeBSD)) &&
+    (gopt Opt_PIC dflags || WayDyn `elem` ways dflags)
+     = if cGhcWithNativeCodeGen == "YES"
+       then let dflags' = dflags { hscTarget = HscAsm }
